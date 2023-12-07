@@ -8,7 +8,7 @@ __version__ = "0.0.0"
 
 REPO_NAME = "Wine-Quality-Prediction"
 AUTHOR_USER_NAME = "izam-mohammed"
-SRC_REPO = "wine-quality-prediction"
+SRC_REPO = "mlProject"
 AUTHOR_EMAIL = "izamdeveloper1@gmail.com"
 
 
