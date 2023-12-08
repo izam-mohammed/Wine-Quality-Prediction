@@ -1,0 +1,15 @@
+artifact_uri: file:///home/izam/coding/wine-quality-prediction/mlruns/0/ac6dc16968c3477e9fb7894799729ab3/artifacts
+end_time: 1702018263845
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+run_id: ac6dc16968c3477e9fb7894799729ab3
+run_name: redolent-stag-516
+run_uuid: ac6dc16968c3477e9fb7894799729ab3
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1702018261915
+status: 3
+tags: []
+user_id: izam

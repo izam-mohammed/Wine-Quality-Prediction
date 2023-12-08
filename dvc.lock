@@ -1,0 +1,116 @@
+schema: '2.0'
+stages:
+  data_ingestion:
+    cmd: python src/mlProject/pipeline/stage_01_data_ingestion.py
+    deps:
+    - path: config/config.yaml
+      hash: md5
+      md5: 374c307693ec3d5fa388407e221f8810
+      size: 995
+    - path: src/mlProject/pipeline/stage_01_data_ingestion.py
+      hash: md5
+      md5: e67fd74c313c15244dd0e1a1bff0aaf4
+      size: 878
+    outs:
+    - path: artifacts/data_ingestion
+      hash: md5
+      md5: cf213e68237a5a48a00ae1834dd84caa.dir
+      size: 124280
+      nfiles: 2
+  data_validation:
+    cmd: python src/mlProject/pipeline/stage_02_data_validation.py
+    deps:
+    - path: config/config.yaml
+      hash: md5
+      md5: 374c307693ec3d5fa388407e221f8810
+      size: 995
+    - path: schema.yaml
+      hash: md5
+      md5: 4507aea2d4cf88586592c441140524ba
+      size: 320
+    - path: src/mlProject/pipeline/stage_02_data_validation.py
+      hash: md5
+      md5: 97a5d60cfb2735ed965db69402b48b65
+      size: 852
+    outs:
+    - path: artifacts/data_validation
+      hash: md5
+      md5: 0ccb3ea5849272ff03be5ab71786b9ff.dir
+      size: 23
+      nfiles: 1
+  data_transformation:
+    cmd: python src/mlProject/pipeline/stage_03_data_transformation.py
+    deps:
+    - path: artifacts/data_ingestion
+      hash: md5
+      md5: cf213e68237a5a48a00ae1834dd84caa.dir
+      size: 124280
+      nfiles: 2
+    - path: config/config.yaml
+      hash: md5
+      md5: 374c307693ec3d5fa388407e221f8810
+      size: 995
+    - path: src/mlProject/pipeline/stage_03_data_transformation.py
+      hash: md5
+      md5: 154c31b6f9456f6126c7ec4546102c57
+      size: 901
+    outs:
+    - path: artifacts/data_transformation
+      hash: md5
+      md5: 59d7038f1c8cdc56252b40dc9cdfc26d.dir
+      size: 93631
+      nfiles: 2
+  model_training:
+    cmd: python src/mlProject/pipeline/stage_04_model_trainer.py
+    deps:
+    - path: artifacts/data_transformation
+      hash: md5
+      md5: 59d7038f1c8cdc56252b40dc9cdfc26d.dir
+      size: 93631
+      nfiles: 2
+    - path: config/config.yaml
+      hash: md5
+      md5: 374c307693ec3d5fa388407e221f8810
+      size: 995
+    - path: src/mlProject/pipeline/stage_04_model_trainer.py
+      hash: md5
+      md5: 592c2255288969cc7c2298f96626d92e
+      size: 831
+    params:
+      params.yaml:
+        ElasticNet:
+          alpha: 0.2
+          l1_ratio: 0.1
+    outs:
+    - path: artifacts/model_trainer
+      hash: md5
+      md5: 2ffa40054f9b474a3231b6c7ef7793e8.dir
+      size: 1233
+      nfiles: 1
+  model_evaluation:
+    cmd: python src/mlProject/pipeline/stage_05_model_evaluation.py
+    deps:
+    - path: artifacts/data_transformation
+      hash: md5
+      md5: 59d7038f1c8cdc56252b40dc9cdfc26d.dir
+      size: 93631
+      nfiles: 2
+    - path: artifacts/model_trainer
+      hash: md5
+      md5: 2ffa40054f9b474a3231b6c7ef7793e8.dir
+      size: 1233
+      nfiles: 1
+    - path: config/config.yaml
+      hash: md5
+      md5: 374c307693ec3d5fa388407e221f8810
+      size: 995
+    - path: src/mlProject/pipeline/stage_05_model_evaluation.py
+      hash: md5
+      md5: 989a7bc0c0bfaa13e1be5a947e299c60
+      size: 871
+    outs:
+    - path: artifacts/model_evaluation
+      hash: md5
+      md5: 0d982b14a8c99abc0f890e4245a721ee.dir
+      size: 96
+      nfiles: 1
